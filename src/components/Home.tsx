@@ -2,13 +2,13 @@ import * as React from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 import ModalForm from "../common/ModalForm";
+import MotionList from "./MotionList";
 import { ModalStyle } from "../common/styles/ModalStyle";
-import { useSelector } from "react-redux";
+
 function Home() {
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   const [modalType, setModalType] = React.useState<string>("");
-  const state = useSelector((state) => state);
-  console.log(state);
+
   const modalCtrl = (e: React.MouseEvent<HTMLButtonElement>) => {
     setModalOpen(true);
     setModalType(e.currentTarget.value);
@@ -30,23 +30,49 @@ function Home() {
           TASK
         </MotionButton>
       </ButtonContainer>
-      <ItemContainer></ItemContainer>
+      <ItemContainer>
+        <MotionList />
+      </ItemContainer>
       <Modal
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         style={ModalStyle}
       >
         {modalType === "image" ? (
-          <ModalForm title="title" body="url" type="image" />
+          <ModalForm
+            title="title"
+            body="url"
+            type="image"
+            setModalOpen={setModalOpen}
+            placeholder="https://picsum.photos/200/200"
+          />
         ) : null}
         {modalType === "video" ? (
-          <ModalForm title="title" body="url" type="video" />
+          <ModalForm
+            title="title"
+            body="url"
+            type="video"
+            setModalOpen={setModalOpen}
+            placeholder="Youtube URL을 입력하세요"
+          />
         ) : null}
         {modalType === "note" ? (
-          <ModalForm title="title" body="url" type="note" />
+          <ModalForm
+            title="title"
+            body="body"
+            type="note"
+            setModalOpen={setModalOpen}
+            placeholder=""
+          />
         ) : null}
         {modalType === "task" ? (
-          <ModalForm title="title" body="url" type="task" />
+          <ModalForm
+            title="title"
+            body="body"
+            type="task"
+            setModalOpen={setModalOpen}
+            placeholder=""
+          />
         ) : null}
       </Modal>
     </MainContainer>
@@ -57,7 +83,7 @@ const MainContainer = styled.div``;
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 10px;
+  margin-top: 25px;
 `;
 const ItemContainer = styled.div``;
 const MotionButton = styled.button`

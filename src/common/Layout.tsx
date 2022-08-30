@@ -3,7 +3,14 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 function Layout() {
   return (
-    <div style={{ backgroundColor: "white", height: "100vh" }}>
+    <div
+      style={{
+        backgroundColor: "white",
+        height: "auto",
+        minHeight: "100vh",
+        paddingBottom: "10px",
+      }}
+    >
       <Header>MOTION</Header>
       <main>
         <Outlet />
@@ -18,7 +25,6 @@ const Header = styled.header`
   align-items: center;
   height: 70px;
   border: 2px solid lightgray;
-  border-radius: 7px;
   color: #4b89dc;
   font-size: 40px;
   font-weight: 600;

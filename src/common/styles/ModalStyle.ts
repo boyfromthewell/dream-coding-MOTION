@@ -13,6 +13,8 @@ export const ModalStyle : object = {
         left: "20%",
         right: "20%",
         bottom: "40%",
+        maxWidth:"600px",
+        margin:"0 auto",
         border: "1px solid #ccc",
         background: "#fff",
         overflow: "auto",
