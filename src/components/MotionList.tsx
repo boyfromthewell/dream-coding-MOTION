@@ -1,11 +1,11 @@
-import React from "react";
+import * as React from "react";
 import { useAppSelector } from "../redux/store";
 import styled from "styled-components";
 import ReactPlayer from "react-player";
-
+import DelButton from "../common/DelButton";
 function MotionList() {
   const { motionList } = useAppSelector((state) => state.motion);
-  console.log(motionList);
+
   return (
     <MotionContainer>
       {motionList &&
@@ -13,13 +13,17 @@ function MotionList() {
           if (item.type === "image") {
             return (
               <ItemContainer key={item.id}>
-                <MotionImage src={item.body} alt="image" />
-                <MotionTitle>{item.title}</MotionTitle>
+                <DelButton itemId={item.id} />
+                <div style={{ display: "flex" }}>
+                  <MotionImage src={item.body} alt="image" />
+                  <MotionTitle>{item.title}</MotionTitle>
+                </div>
               </ItemContainer>
             );
           } else if (item.type === "video") {
             return (
               <VideoContainer key={item.id}>
+                <DelButton itemId={item.id} />
                 <MotionTitle>{item.title}</MotionTitle>
                 <ReactPlayer
                   url={item.body}
@@ -27,12 +31,14 @@ function MotionList() {
                   playing={true}
                   width="500px"
                   height="400px"
+                  style={{ marginLeft: "10px" }}
                 />
               </VideoContainer>
             );
           } else if (item.type === "note") {
             return (
               <NoteContainer key={item.id}>
+                <DelButton itemId={item.id} />
                 <NoteTitle>{item.title}</NoteTitle>
                 <NoteBody>{item.body}</NoteBody>
               </NoteContainer>
@@ -40,10 +46,11 @@ function MotionList() {
           } else {
             return (
               <NoteContainer key={item.id}>
+                <DelButton itemId={item.id} />
                 <NoteTitle>{item.title}</NoteTitle>
                 <div>
-                  <CheckBox type="checkbox" />
-                  <CheckLabel>{item.body}</CheckLabel>
+                  <CheckBox type="checkbox" id={item.title} />
+                  <CheckLabel htmlFor={item.title}>{item.body}</CheckLabel>
                 </div>
               </NoteContainer>
             );
@@ -58,6 +65,7 @@ const MotionContainer = styled.div`
 `;
 const ItemContainer = styled.div`
   display: flex;
+  flex-direction: column;
   border: 1px solid lightgrey;
   border-radius: 12px;
   padding: 20px;
@@ -67,7 +75,6 @@ const ItemContainer = styled.div`
 `;
 const VideoContainer = styled(ItemContainer)`
   flex-direction: column;
-  align-items: center;
 `;
 
 const NoteContainer = styled(ItemContainer)`
@@ -86,6 +93,7 @@ const MotionTitle = styled.p`
 
 const NoteTitle = styled.h3`
   font-size: 20px;
+  margin-top: 0;
 `;
 const NoteBody = styled.p``;
 

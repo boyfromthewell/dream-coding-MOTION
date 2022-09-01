@@ -20,9 +20,12 @@ const motionSlice=createSlice({
     reducers:{
         ADD_MOTION(state, action:PayloadAction<MotionState[]>){
             state.motionList = action.payload;
+        },
+        DEL_MOTION(state, action:PayloadAction<MotionState[]>){
+            state.motionList = action.payload;
         }
     }
 })
 
-export const { ADD_MOTION } = motionSlice.actions;
+export const { ADD_MOTION, DEL_MOTION } = motionSlice.actions;
 export default motionSlice.reducer;

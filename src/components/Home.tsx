@@ -87,7 +87,7 @@ const ButtonContainer = styled.div`
 `;
 const ItemContainer = styled.div``;
 const MotionButton = styled.button`
-  background-color: #4b89dc;
+  background-color: #89b2e9;
   border: none;
   border-radius: 7px;
   height: 50px;

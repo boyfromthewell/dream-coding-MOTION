@@ -68,7 +68,7 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const ModalTitle = styled.h1`
+const ModalTitle = styled.h2`
   margin-bottom: 3px;
   margin-top: 5px;
   color: gray;

@@ -24,8 +24,9 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   height: 70px;
-  border: 2px solid lightgray;
-  color: #4b89dc;
+  color: white;
+  border: none;
+  background-color: #4b89dc;
   font-size: 40px;
   font-weight: 600;
 `;
